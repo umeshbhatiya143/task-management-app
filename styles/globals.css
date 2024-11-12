@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -14,8 +17,41 @@
   }
 }
 
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
+
+/* Update Task Management heading style */
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700; /* Bold for better visibility */
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Slight spacing between letters for better readability */
+}
+
+@keyframes gradient-pulse {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-pulse {
+  animation: gradient-pulse 10s ease infinite;
+  background-size: 200% 200%;
+}
+
