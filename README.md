@@ -29,7 +29,7 @@ Check out the live demo of the application here: [Task Management App Demo](http
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/task-management-app.git
+   git clone https://github.com/umeshbhatiya143/task-management-app.git
    cd task-management-app
 2. **Install Dependencies Make sure you have Node.js v20.17.0 and npm installed, then run:**
    ```bash
@@ -67,9 +67,14 @@ Check out the live demo of the application here: [Task Management App Demo](http
 
 ## Additional Information
 
-- **Responsive Design**: The application is styled to be **fully responsive**, ensuring functionality across various screen sizes.
-- **Task Data Management**: Task data is temporarily managed in the application state, with no persistent storage (e.g., database) included in this version.
-- **Color Scheme**: Based on the provided color scheme (#73BC44, black, and white) for a cohesive design.
+- **Responsive Design**: The application is styled to be **fully responsive**, ensuring functionality across various screen sizes, from desktop to mobile devices.
+- **Task Data Management**: Task data is temporarily managed in **local storage** to persist tasks even after the user reloads or closes the application. This allows users to maintain their task list across sessions without needing a database.
+- **Color Scheme**: The application uses a variety of color schemes, including the color scheme of **#73BC44, black, and white**, to ensure a visually cohesive and appealing design.
+- **Priority-Based Colors**: Tasks are color-coded based on their priority level (Low, Medium, High) for quick visual identification. For example:
+  - **Low Priority**: Green (#73BC44)
+  - **Medium Priority**: Yellow
+  - **High Priority**: Red
+
 
 ## Future Improvements
 
