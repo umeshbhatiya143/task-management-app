@@ -62,9 +62,9 @@ function Dashboard({ tasks, setTasks }) {
             {/* Background and Header */}
             <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-[#b1d29c] to-green-400 opacity-20 animate-gradient-pulse z-0"></div>
             <div className="absolute top-0 left-0 w-full h-48 sm:h-36 bg-gradient-to-r from-[#73BC44] to-green-600 rounded-b-full shadow-lg z-0"></div>
-            <div className="relative z-10 text-center mb-12 px-4">
-                <h1 className="text-4xl -mt-2 sm:mt-0 md:text-5xl font-extrabold uppercase text-white mb-4 tracking-wider">Task Management</h1>
-                <p className="text-lg text-gray-200 font-medium">Organize and prioritize your tasks seamlessly</p>
+            <div className="relative flex flex-col items-center justify-center z-10 text-center mb-12 px-4">
+                <h1 className="text-4xl max-w-80 sm:max-w-none -mt-2 sm:mt-0 md:text-5xl font-extrabold uppercase text-white mb-4 tracking-wider">Task Management</h1>
+                <p className="text-lg max-w-80 sm:max-w-none text-gray-200 font-medium">Organize and prioritize your tasks seamlessly</p>
             </div>
 
             {/* Floating Add New Task Button */}
