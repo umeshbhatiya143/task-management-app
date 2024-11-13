@@ -1,40 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Task Management Application
 
-## Getting Started
+A simple task management application built with **Next.js** and **Tailwind CSS**. This project allows users to add, edit, delete, and mark tasks as complete. Tasks are categorized as overdue, upcoming, or completed, making it easy for users to manage their time and priorities.
 
-First, run the development server:
+## Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Check out the live demo of the application here: [Task Management App Demo](https://task-management-app-rust.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- **Add New Task:** Users can add tasks with a title, description, due date, and priority level.
+- **Edit/Delete Task:** Users can edit or delete tasks as needed.
+- **Mark Task as Complete:** Tasks can be marked as complete, moving them to the "Completed Tasks" section.
+- **Filter & Search:** Users can filter tasks by priority and completion status, and search for specific tasks by keywords.
+- **Overdue Handling:** Overdue tasks are displayed prominently for better task management.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Technologies Used
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+- **Next.js**: `v15.0.3` – For creating the React-based web application framework.
+- **React**: `v19.0.0-rc-66855b96-20241106` – For building user interfaces.
+- **React DOM**: `v19.0.0-rc-66855b96-20241106` – For DOM-specific methods for React.
+- **React Icons**: `v5.3.0` – For simple, clean icons to enhance the UI.
+- **Tailwind CSS**: `v3.4.1` – For styling and responsive design.
+- **Node.js**: `v20.17.0` – For the runtime environment.
+- **ESLint**: `v8.x` – For linting and enforcing coding standards.
+- **PostCSS**: `v8.x` – For processing CSS files.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup Instructions
 
-## Learn More
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/task-management-app.git
+   cd task-management-app
+2. **Install Dependencies Make sure you have Node.js v20.17.0 and npm installed, then run:**
+   ```bash
+   npm install
+3. **Run the Development Server Start the local development server:**
+    ```bash
+    npm run dev
+    Open http://localhost:3000 to view the app in the browser.
+4. **Build the Application (Optional) For production, build the application:**
+    ```bash
+    npm run build
 
-To learn more about Next.js, take a look at the following resources:
+## Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+![Web View](public/web-view.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*The task management application in desktop view, showcasing the task list, filters, and the ability to manage tasks.*
 
-## Deploy on Vercel
+<img src="public/mobile-view.jpg" alt="Mobile View" width="300"/>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+*The task management application in mobile view, optimized for smaller screens and easy task management on the go.*
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## Assumptions
+
+1. **Overdue Tasks Display**: Overdue tasks should always be visible if they are incomplete, regardless of the selected filter or search term.
+2. **Filter Logic**:
+    - The "All" filter displays all tasks.
+    - The "Completed" filter shows only completed tasks.
+    - The "Incomplete" filter shows only upcoming or overdue incomplete tasks.
+    - Overdue tasks are prioritized and shown at the top when applicable.
+3. **Priority Filter**:
+    - Tasks are filtered by the priority level set during creation or editing (Low, Medium, High).
+4. **Search Functionality**: Search results display any tasks with titles or descriptions that contain the search term, irrespective of their completion status.
+5. **Styling and Responsiveness**: Tailwind CSS is used to ensure responsiveness across devices, with a focus on usability and aesthetics. The application is **fully responsive**, providing an optimized user experience on both desktop and mobile devices.
+
+## Additional Information
+
+- **Responsive Design**: The application is styled to be **fully responsive**, ensuring functionality across various screen sizes.
+- **Task Data Management**: Task data is temporarily managed in the application state, with no persistent storage (e.g., database) included in this version.
+- **Color Scheme**: Based on the provided color scheme (#73BC44, black, and white) for a cohesive design.
+
+## Future Improvements
+
+* **Persistent Storage**: Implement database support (e.g., MongoDB) for saving tasks persistently.
+* **User Authentication**: Add user authentication to allow personalized task management.
+* **Notifications**: Integrate notifications for upcoming or overdue tasks.
+
