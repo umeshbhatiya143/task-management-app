@@ -8,7 +8,7 @@ function Dashboard({ tasks, setTasks }) {
     const [taskToEdit, setTaskToEdit] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [priorityFilter, setPriorityFilter] = useState('All');
-    const [completionFilter, setCompletionFilter] = useState('All'); // New state for completion filter
+    const [completionFilter, setCompletionFilter] = useState('All');
 
     const handleOpenModal = (task = null) => {
         setTaskToEdit(task);
@@ -44,17 +44,22 @@ function Dashboard({ tasks, setTasks }) {
         const matchesCompletion =
             completionFilter === 'All' ||
             (completionFilter === 'Completed' && task.isCompleted) ||
-            (completionFilter === 'Not Completed' && !task.isCompleted);
+            (completionFilter === 'Incomplete' && !task.isCompleted);
 
         return matchesSearch && matchesPriority && matchesCompletion;
     });
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const overdueTasks = filteredTasks.filter(
-        (task) => !task.isCompleted && new Date(task.dueDate) < new Date()
+        (task) => !task.isCompleted && new Date(task.dueDate) < today
     );
+
     const upcomingTasks = filteredTasks.filter(
-        (task) => !task.isCompleted && new Date(task.dueDate) >= new Date()
+        (task) => !task.isCompleted && new Date(task.dueDate) >= today
     );
+
     const completedTasks = filteredTasks.filter((task) => task.isCompleted);
 
     return (
@@ -122,8 +127,27 @@ function Dashboard({ tasks, setTasks }) {
 
             {/* Task Sections */}
             <div className="grid gap-8 px-4 z-10">
-                {/* Conditional rendering based on filter selection */}
-                {completionFilter === 'Incomplete' && (
+                {/* Overdue Tasks */}
+                {completionFilter !== 'Completed' && overdueTasks.length > 0 && (
+                    <div>
+                        <h2 className="text-2xl font-semibold text-red-600 mb-4">Overdue Tasks</h2>
+                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {overdueTasks.map((task) => (
+                                <TaskItem
+                                    key={task.id}
+                                    task={task}
+                                    onEdit={handleOpenModal}
+                                    onToggleComplete={handleToggleComplete}
+                                    onDelete={handleDeleteTask}
+                                    className="transform hover:scale-105 transition-transform duration-300 shadow hover:shadow-lg"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Upcoming and Completed Tasks based on filters */}
+                {completionFilter !== 'Completed' && (
                     <div>
                         <h2 className="text-2xl font-semibold text-blue-600 mb-4">Upcoming Tasks</h2>
                         {upcomingTasks.length > 0 ? (
@@ -145,7 +169,7 @@ function Dashboard({ tasks, setTasks }) {
                     </div>
                 )}
 
-                {completionFilter === 'Completed' && (
+                {completionFilter !== 'Incomplete' && (
                     <div>
                         <h2 className="text-2xl font-semibold text-green-600 mb-4">Completed Tasks</h2>
                         {completedTasks.length > 0 ? (
@@ -165,71 +189,6 @@ function Dashboard({ tasks, setTasks }) {
                             <p className="text-center text-gray-500">No completed tasks yet. Keep going!</p>
                         )}
                     </div>
-                )}
-
-                {/* Show all sections when 'All' is selected */}
-                {completionFilter === 'All' && (
-                    <>
-                        <div>
-                            <h2 className="text-2xl font-semibold text-red-600 mb-4">Overdue Tasks</h2>
-                            {overdueTasks.length > 0 ? (
-                                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                    {overdueTasks.map((task) => (
-                                        <TaskItem
-                                            key={task.id}
-                                            task={task}
-                                            onEdit={handleOpenModal}
-                                            onToggleComplete={handleToggleComplete}
-                                            onDelete={handleDeleteTask}
-                                            className="transform hover:scale-105 transition-transform duration-300 shadow hover:shadow-lg"
-                                        />
-                                    ))}
-                                </div>
-                            ) : (
-                                <p className="text-center text-gray-500">No overdue tasks. Great job!</p>
-                            )}
-                        </div>
-
-                        <div>
-                            <h2 className="text-2xl font-semibold text-blue-600 mb-4">Upcoming Tasks</h2>
-                            {upcomingTasks.length > 0 ? (
-                                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                    {upcomingTasks.map((task) => (
-                                        <TaskItem
-                                            key={task.id}
-                                            task={task}
-                                            onEdit={handleOpenModal}
-                                            onToggleComplete={handleToggleComplete}
-                                            onDelete={handleDeleteTask}
-                                            className="transform hover:scale-105 transition-transform duration-300 shadow hover:shadow-lg"
-                                        />
-                                    ))}
-                                </div>
-                            ) : (
-                                <p className="text-center text-gray-500">No upcoming tasks. You&apos;re all caught up!</p>
-                            )}
-                        </div>
-
-                        <div>
-                            <h2 className="text-2xl font-semibold text-green-600 mb-4">Completed Tasks</h2>
-                            {completedTasks.length > 0 ? (
-                                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                    {completedTasks.map((task) => (
-                                        <TaskItem
-                                            key={task.id}
-                                            task={task}
-                                            onEdit={handleOpenModal}
-                                            onToggleComplete={handleToggleComplete}
-                                            onDelete={handleDeleteTask}
-                                            className="transform hover:scale-105 transition-transform duration-300 shadow hover:shadow-lg"
-                                        />
-                                    ))}
-                                </div>
-                            ) : (
-                                <p className="text-center text-gray-500">No completed tasks yet. Keep going!</p>
-                            )}
-                        </div>
-                    </>
                 )}
             </div>
         </div>
